@@ -2,7 +2,7 @@
 
 ```
 Prerequisites:
-- Vagrant installed
+- git installed
 
 ```
 
