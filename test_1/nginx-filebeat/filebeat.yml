@@ -1,0 +1,18 @@
+output:
+  logstash:
+    enabled: true
+    hosts:
+      - 172.17.0.2:5044
+    timeout: 15
+
+filebeat:
+  prospectors:
+    -
+      paths:
+        - /var/log/syslog
+        - /var/log/auth.log
+      document_type: syslog
+    -
+      paths:
+        - "/var/log/nginx/*.log"
+      document_type: nginx-access
