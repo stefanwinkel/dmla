@@ -1,0 +1,32 @@
+--- 
+- 
+  box: puppetlabs/ubuntu-16.04-64-nocm
+  cpu: 2
+  ip: "10.2.2.150"
+  name: dmlav
+  forward_ports: 
+      - { guest: 5601, host: 5601 }
+      - { guest: 9200, host: 9200 }
+      - { guest: 5044, host: 5044 }
+      - { guest: 80, host: 80 }
+      - { guest: 3000, host: 3000 }
+      - { guest: 6379, host: 6379 }
+      - { guest: 8080, host: 8080 }
+      - { guest: 9090, host: 9090 }
+      - { guest: 9093, host: 9093 }
+      
+  ram: 4048
+  shell_commands:
+      - { shell: 'apt-get update -y && apt-get install -y wget git'}   
+      - { shell: 'wget -qO- https://get.docker.com/ | sh'}
+      - { shell: 'sysctl -w vm.max_map_count=262144'}
+      - { shell: 'umask 0022'}
+      - { shell: 'git clone https://github.com/stefanwinkel/dmla.git'}
+      - { shell: 'git clone https://github.com/spujadas/elk-docker.git '}
+      - { shell: 'git clone https://github.com/uschtwill/docker_monitoring_logging_alerting.git'}
+      - { shell: 'sudo curl -o /usr/local/bin/docker-compose -L "https://github.com/docker/compose/releases/download/1.14.0-rc1/docker-compose-$(uname -s)-$(uname -m)" ' }
+      - { shell: 'sudo chmod 700 /usr/local/bin/docker-compose'}
+      - { shell: 'sudo chmod 700 /home/vagrant/dmla/setup.sh'}
+      - { shell: 'cd /home/vagrant/dmla'}
+      
+      
