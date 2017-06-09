@@ -1,4 +1,4 @@
-REM This scrimpt installs the pre-reqs for running DMLA
+REM This script installs the pre-reqs for running DMLA
 REM Note each phase requires a new shell to pick up the env variables from the previous command
 
 REM Phase 0
