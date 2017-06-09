@@ -1,4 +1,4 @@
-# Dirtyc0w Docker POC
+# Docker Monitoring Logging and Alerting POC
 
 ```
 Prerequisites:
@@ -8,7 +8,9 @@ Prerequisites:
 
 ## What the POC entails and why
 
-First let's start with the why ? This POC is going to use the [`dirtyc0w`](https://dirtycow.ninja/) kernel [`exploit`](https://github.com/dirtycow/dirtycow.github.io/wiki/PoCs) to do privilege escalation inside the standard [`nginx`](https://hub.docker.com/_/nginx/) image. The only modifications
+First let's start with the why ? This POC is going to use the [`dirtyc0w`](https://dirtycow.ninja/) kernel [`exploit`](https://github.com/dirtycow/dirtycow.github.io/wiki/PoCs) to do privilege escalation inside the standard [`nginx`](https://hub.docker.com/_/nginx/) image. 
+
+The only modifications
 to the image I made is added a non root user lovingly called hacker to the exploit files. To see the make up of the image please see the [`Dockerfile`](https://github.com/scotty-c/dirty-cow-poc/blob/master/dirtyc0w/Dockerfile). Now for the most important part of the POC, how to mitigate the attack without patching with an [`AppArmor`](https://docs.docker.com/engine/security/apparmor/) profile. Showing the importance of correct container security. With a modified version of the exploit I have been able to escape the container. I did not want to open source this as it is malicious, but the same AppArmor profile was also able to mitigate that vulnerability without any changes.  
 
 To build the environment we will build a Vagrant box that is running a Ubuntu 16.04 server, with kernel version 4.4.0-21-generic.This is to mimic a normal server running in either a cloud environment or bare metal.
