@@ -28,9 +28,9 @@ Then run up the environment with the command
 ```
 vagrant up
 ```
-Once the server is built, we will ssh into it
+Once the server is built, we will ssh into it, either by vagrant ssh or vagrant putty. The latter uses the vagrant's putty plugin 
 ```
-vagrant ssh
+vagrant putty
 ```
 change to the root user
 ```
