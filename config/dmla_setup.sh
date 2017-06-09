@@ -21,7 +21,7 @@ the host machine. Only use this, when you're running this locally, on a virtual 
 
     echo "......"
 
-	cd ~/elk-docker
+	cd /home/vagrant/elk-docker
 	docker-compose up
 	
 	echo "Starting nginx filebeat sample"
