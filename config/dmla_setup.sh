@@ -21,16 +21,16 @@ the host machine. Only use this, when you're running this locally, on a virtual 
 
     echo "......"
 
+	echo "disable cert"
+	cp /home/vagrant/dmla*/config/02-beats-input.conf  /home/vagrant/elk-docker/
+	
+	echo "Start ELK"
 	cd /home/vagrant/elk-docker
 	docker-compose up
 	
-	echo "Starting nginx filebeat sample"
-	cd ~/elk-docker/nginx-filebeat/
-	cp ~/elk-docker/nginx-filebeat/Dockerfile ~/elk-docker/nginx-filebeat/Dockerfile.save
-	cp ~/elk-docker/nginx-filebeat/filebeat.yml ~/elk-docker/nginx-filebeat/filebeat.yml.save
-	cp ~/dmla-v1/config/nginx-filebeat/Dockerfile ~/elk-docker/nginx-filebeat/
-	cp ~/dmla-v1/config/nginx-filebeat/filebeat.yml ~/elk-docker/nginx-filebeat/
 	
+	cd /home/vagrant/dmla*/config/
+	./nginx_setup.sh
 
     echo "------------------------------------------------------------"
     echo "############################### Output from 'docker ps'..."
