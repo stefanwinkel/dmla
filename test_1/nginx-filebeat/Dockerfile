@@ -19,7 +19,7 @@ ENV REFRESHED_AT 2016-11-04
 
 ### install Filebeat
 
-ENV FILEBEAT_VERSION 5.3.0
+ENV FILEBEAT_VERSION 5.4.0
 
 RUN apt-get update -qq \
  && apt-get install -qqy curl \
