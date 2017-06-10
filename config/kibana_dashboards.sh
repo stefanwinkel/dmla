@@ -34,7 +34,7 @@ the host machine. Only use this, when you're running this locally, on a virtual 
 	echo "Loading the kibana filebeat-* index pattern"
 	/usr/share/filebeat/scripts/import_dashboards -only-index -es http://172.17.0.2:9200 -user elastic -pass changeme
 	echo "Search for filebeat data in kibana"
-	curl -XGET "http://172.17.0.2:9200/filebeat-*/_search?pretty" -u kibana
+	curl -XGET "http://172.17.0.2:9200/filebeat-*/_search?pretty" -u kibana:changeme 
 	echo "Test filebeat:"
 	/usr/bin/filebeat.sh -e -v -c /etc/filebeat/filebeat.yml
 
