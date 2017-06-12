@@ -14,14 +14,13 @@ Firstly
 ``
 git clone xxxx && cd xxxx
 ``
-Then run up the environment with the command
-
 On a Windows system, execute dmla/setup/dmla_config.bat
+Then run up the environment with the command. This will install DMLA 
 
 ```
 vagrant up
 ```
-Once the server is built, we will ssh into it, either by vagrant ssh or vagrant putty. (Plugin is installed during dmla_config.bat)
+Once the DMLA framework is built, we will ssh into it, either by vagrant ssh or vagrant putty. (Plugin is installed during dmla_config.bat)
 ```
 vagrant putty
 ```
