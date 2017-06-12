@@ -30,5 +30,7 @@
       - { shell: 'sudo chmod 700 /home/vagrant/docker_monitoring_logging_alerting/setup.sh'}
       - { shell: 'sudo chmod 700 /home/vagrant/dmla-v1/config/dmla_setup.sh'}
       - { shell: 'cd /home/vagrant/dmla-v1/config && sudo sh ./dmla_setup.sh unsecure'}
+      - { shell: '#docker-compose -f docker_monitoring_logging_alerting/monitoring/docker-compose.secure.yml up --force-recreate -d'}
+      
       
       
