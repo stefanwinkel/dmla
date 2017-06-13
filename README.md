@@ -26,8 +26,8 @@ vagrant putty
 ```
 
 Logging: http://localhost:5601/app/kibana#
+![Alt text](/screenshots/grafana_overview.jpg?raw=true "Optional Title")
 
-<img src = http://127.0.0.1</img>
 
 Monitoring: http://localhost:3000/dashboard/db/main-overview
 
