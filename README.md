@@ -40,6 +40,9 @@ AlertManager: http://localhost:9093/#/alerts
 
 
 # Clean Up
+
+
+
 ```
 Exit back to your host machines terminal and issue `vagrant destroy`
-
+```
