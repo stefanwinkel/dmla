@@ -25,7 +25,11 @@ Once the DMLA framework is built, we will ssh into it, either by vagrant ssh or 
 vagrant putty
 ```
 
+Logging: http://localhost:5601/app/kibana#
 
+<img src = http://127.0.0.1</img>
+
+Monitoring: http://localhost:3000/dashboard/db/main-overview
 
 ```
 
