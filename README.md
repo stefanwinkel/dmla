@@ -33,11 +33,13 @@ Logging: http://localhost:5601/app/kibana#
 Monitoring: http://localhost:3000/dashboard/db/main-overview
 
 [![!Grafana](https://github.com/stefanwinkel/dmla/blob/master/Screenshots/grafana_overview.jpg)](#Dashboard)
-```
 
+
+AlertManager: http://localhost:9093/#/alerts
+[![!Prometheus](https://github.com/stefanwinkel/dmla/blob/master/Screenshots/prometheus_alertmanager.jpg)](#Dashboard)
 
 
 # Clean Up
-
+```
 Exit back to your host machines terminal and issue `vagrant destroy`
 
