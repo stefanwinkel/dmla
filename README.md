@@ -26,8 +26,8 @@ vagrant putty
 ```
 
 Logging: http://localhost:5601/app/kibana#
-![Alt text](/screenshots/grafana_overview.jpg?raw=true "Optional Title")
-[![solarized dualmode](https://github.com/altercation/solarized/raw/master/img/solarized-yinyang.png)](#features)
+
+[!Grafana](https://github.com/stefanwinkel/dmla/blob/master/Screenshots/grafana_overview.jpg)](#Dashboard)
 
 Monitoring: http://localhost:3000/dashboard/db/main-overview
 
