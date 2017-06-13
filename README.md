@@ -36,7 +36,7 @@ Monitoring: http://localhost:3000/dashboard/db/main-overview
 
 
 AlertManager: http://localhost:9093/#/alerts
-[![!Prometheus](https://github.com/stefanwinkel/dmla/blob/master/Screenshots/prometheus_alertmanager.jpg)](#Dashboard)
+[![!Prometheus](https://github.com/stefanwinkel/dmla/blob/master/Screenshots/prometheus_alertmanager.JPG)](#Dashboard)
 
 
 # Clean Up
