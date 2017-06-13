@@ -27,7 +27,7 @@ vagrant putty
 
 Logging: http://localhost:5601/app/kibana#
 
-[![!Kibana](https://github.com/stefanwinkel/dmla/blob/master/Screenshots/kibana_overview.PNG)](#Dashboard)
+[![!Kibana](https://github.com/stefanwinkel/dmla/blob/master/Screenshots/kibaba_overview.PNG)](#Dashboard)
 
 
 Monitoring: http://localhost:3000/dashboard/db/main-overview
