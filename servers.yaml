@@ -13,24 +13,54 @@
       - { guest: 6379, host: 6379 }
       - { guest: 8080, host: 8080 }
       - { guest: 9090, host: 9090 }
+      - { guest: 9100, host: 9100 }
       - { guest: 9093, host: 9093 }
       
   ram: 4048
   shell_commands:
-      - { shell: 'apt-get update -y && apt-get install -y wget git'}   
-      - { shell: 'wget -qO- https://get.docker.com/ | sh'}
+      - { shell: 'echo "Prep the environment"'}
+      - { shell: 'apt-get update -y && apt-get install -y wget git'}        
       - { shell: 'sysctl -w vm.max_map_count=262144'}
       - { shell: 'umask 0022'}
-      - { shell: '#git clone https://github.com/stefanwinkel/dmla.git'}
-      - { shell: 'git clone https://github.com/spujadas/elk-docker.git '}
-      - { shell: 'git clone https://github.com/spujadas/elkx-docker.git '}
-      - { shell: 'git clone https://github.com/uschtwill/docker_monitoring_logging_alerting.git'}
+      
+      - { shell: 'echo "Setup Docker"'}      
+      - { shell: 'wget -qO- https://get.docker.com/ | sh'}
+      
+      - { shell: 'echo "Setup Docker-Compose"'}
       - { shell: 'sudo curl -o /usr/local/bin/docker-compose -L "https://github.com/docker/compose/releases/download/1.14.0-rc1/docker-compose-$(uname -s)-$(uname -m)" ' }
       - { shell: 'sudo chmod 700 /usr/local/bin/docker-compose'}
+            
+      - { shell: 'echo "Clone GitHub repos"'}
+      - { shell: '#git clone https://github.com/stefanwinkel/dmla.git'}
+
+      - { shell: 'echo "Clone Logging framework"'}      
+      - { shell: 'git clone https://github.com/spujadas/elk-docker.git '}
+      - { shell: 'git clone https://github.com/spujadas/elkx-docker.git '}
+   
+      - { shell: 'echo "Cloning SOF ELK framework"'}      
+      - { shell: 'git clone https://github.com/philhagen/sof-elk.git '}
+   
+      - { shell: 'echo "Clone Monitoring framework"'}         
+      - { shell: '#git clone https://github.com/uschtwill/docker_monitoring_logging_alerting.git'}
+      - { shell: '#git clone https://github.com/VoiceBoxTechnologies/docker_monitoring_logging_alerting'}
+      - { shell: 'git clone https://github.com/nsaud01/docker_monitoring_logging_alerting.git/'}
       - { shell: 'sudo chmod 700 /home/vagrant/docker_monitoring_logging_alerting/setup.sh'}
-      - { shell: 'sudo chmod 700 /home/vagrant/dmla-v1/config/dmla_setup.sh'}
-      - { shell: 'cd /home/vagrant/dmla-v1/config && sudo sh ./dmla_setup.sh unsecure'}
-      - { shell: '#docker-compose -f docker_monitoring_logging_alerting/monitoring/docker-compose.secure.yml up --force-recreate -d'}
       
+      - { shell: '#echo "Echo Prep VoiceBoxTechnologies to 5.4.0"'}
+      - { shell: '#sudo cp  /home/vagrant/docker_monitoring_logging_alerting/docker-compose.yml /home/vagrant/docker_monitoring_logging_alerting/docker-compose.yml.save '}
+      - { shell: '#sudo cp  /home/vagrant/dmla*/config/dmla_docker-compose.yml /home/vagrant//docker_monitoring_logging_alerting/docker-compose.yml'}
+      - { shell: '#sudo cp  /home/vagrant/dmla*/config/dmla_kibana_Dockerfile /home/vagrant//docker_monitoring_logging_alerting/kibanan/Dockerfile'}
       
+      - { shell: 'echo "Echo Prep nsaud01"'}
+      - { shell: 'cd docker_monitoring_logging_alerting && mkdir ../storage && mkdir ../storage/jenkins/ &&  mkdir ../storage/jenkins/secrets && echo "jenkins2017"  > ../storage/jenkins/secrets/initialAdminPassword '}
+      - { shell: 'sudo cp /home/vagrant/dmla*/config/dmla_prometheus.yml /home/vagrant/docker_monitoring_logging_alerting/monitoring/prometheus/prometheus.yml '}
       
+      - { shell: 'echo "Replace GROK patterns from SOF"'}
+      - { shell: 'echo sudo cp /home/vagrant/sof-elk/grok-patterns/for572_custom /home/vagrant/docker_monitoring_logging_alerting/logging/logstash/patterns/custom_logstash_grok_patterns'} 
+      
+      - { shell: 'echo "Prep and Execute dmla setup"'}
+      - { shell: '#sudo chmod 700 /home/vagrant/dmla-v1/config/dmla_setup.sh'}
+      
+      - { shell: 'echo "Execute"'}
+      - { shell: 'cd /home/vagrant/docker_monitoring_logging_alerting && sudo sh ./setup.sh unsecure'}
+      - { shell: '#cd /home/vagrant/dmla*/config/ && sudo sh ./dmla_setup.sh unsecure'}

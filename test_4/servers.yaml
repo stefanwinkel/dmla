@@ -21,11 +21,14 @@
       - { shell: 'cd /home/vagrant/dirtycow-docker-vdso '}
       
       - { shell: '# Instrument Docker with DMLA monitoring'}
-      - { shell: 'cp /home/vagrant/vDSO-exploit2/docker-compose.yml /home/vagrant/dirtycow-docker-vdso '}
+      - { shell: 'sudo cp /home/vagrant/vDSO-exploit2/docker-compose.yml /home/vagrant/dirtycow-docker-vdso '}
+      - { shell: 'sudo chmod 777 /home/vagrant/dirtycow-docker-vdso/docker-compose.yml '}
+      - { shell: 'sudo cat /home/vagrant/vDSO-exploit2/node.docker-compose.yml >> /home/vagrant/dirtycow-docker-vdso/docker-compose.yml '}
       
       - { shell: '# Build and loging into the docker container'}
+      
       - { shell: 'sudo docker-compose build '}
-      - { shell: 'echo "Loging in to the docker container"  '}
+      - { shell: 'echo "Logging in to the docker container"  '}
       - { shell: 'echo "cd /home/vagrant/dirtycow-docker-vdso" '} 
       - { shell: 'sudo docker-compose run dirtycow /bin/bash"  '}
       

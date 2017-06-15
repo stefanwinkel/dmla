@@ -1,6 +1,47 @@
 version: '2'
+
+services:
+
+#########################################################
+####                    TESTING                      ####
+#########################################################
 services:
   dirtycow:
     build: .
     restart: unless-stopped
+    expose:
+      - 8090
+      - 50000
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:rw
+      - /usr/bin/docker:/usr/bin/docker
+      - /usr/bin/make:/usr/bin/make
+      - ../storage/jenkins:/var/jenkins_home
+    labels:
+      - "container_group=testing"
+      - "traefik.enable=true"
+      - "traefik.backend=jenkins"
+      - "traefik.frontend.rule=Host:jenkins.${DOMAIN}"
+      - "traefik.docker.network=testing_net"
+      - "traefik.port=8090"
 
+    logging:
+      driver: gelf
+      options:
+        gelf-address: udp://172.16.0.38:12201
+        labels: container_group
+
+#########################################################
+
+#########################################################
+####                   Networking                    ####
+#########################################################
+
+# Extra-network is necessary to have a dedicated IP for Logstash to forwards log to.
+networks:
+  default:
+    external:
+      name: testing_net
+
+#########################################################

@@ -1,0 +1,54 @@
+version: '2'
+services:
+  dirtycow:
+    build: .
+    restart: unless-stopped
+
+#########################################################
+####                    LOGGING                      ####
+#########################################################
+
+  # Runs on your node(s) and forwards all logs to Logstash.
+  node-filebeat:
+    image: prima/filebeat
+    volumes:
+      - ../logging/filebeat.yml:/filebeat.yml
+    restart: always
+    labels:
+      - "container_group: testing"
+      - "traefik.enable=false"
+
+
+#########################################################
+####                   MONITORING                    ####
+#########################################################
+
+  # Runs on your node(s) and forwards node(host) metrics to Prometheus.
+  node-nodeexporter:
+    image: prom/node-exporter
+    expose:
+      - 9100
+    restart: always
+    labels:
+      - "container_group: testing"
+      - "traefik.enable=false"
+
+#########################################################
+
+  # Runs on your node(s) and forwards container metrics to Prometheus.
+  node-cadvisor:
+    image: google/cadvisor
+    expose:
+      - 8080
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    restart: always
+    labels:
+      - "container_group: testing"
+      - "traefik.enable=false"
+      - "traefik.backend=cadvisor"
+      - "traefik.frontend.rule=Host:cadvisor.sandcsw.com"
+      - "traefik.docker.network=monitoring_logging"

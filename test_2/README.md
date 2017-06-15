@@ -1,6 +1,4 @@
-# Dirtyc0w Docker test
-
-This test is obtained from https://github.com/scotty-c/dirty-cow-poc. 
+# Dirtyc0w Docker POC
 
 ```
 Prerequisites:

@@ -28,9 +28,9 @@ the host machine. Only use this, when you're running this locally, on a virtual 
 	cd /home/vagrant/elk-docker
 	docker-compose up
 	
-	
+	echo "Start Nginx filebeat"
 	cd /home/vagrant/dmla*/config/
-	./nginx_setup.sh
+	./nginx_setup.sh unsecure
 
     echo "------------------------------------------------------------"
     echo "############################### Output from 'docker ps'..."

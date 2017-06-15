@@ -28,7 +28,8 @@ the host machine. Only use this, when you're running this locally, on a virtual 
 	echo "Copying DMLA files"
 	cd /home/vagrant/dmla*/test_1/nginx-filebeat/ 
 	docker build -t filebeat-nginx-example .
-	docker run -p 80:80 -it --link elkdocker_elk_1:elkdocker_elk --name filebeat-nginx-example filebeat-nginx-example
+	#docker run -p 80:80 -it --link elkdocker_elk_1:elkdocker_elk --name filebeat-nginx-example filebeat-nginx-example
+	docker run -p 80:80 -it --link logging_logstash_1:logging_logstash --name filebeat-nginx-example filebeat-nginx-example --net monitoring_logging
 
     echo "------------------------------------------------------------"
     echo "############################### Output from 'docker ps'..."
