@@ -1,4 +1,4 @@
-FROM nginx:1.10.2
+FROM ubuntu:14.04
 
 RUN useradd hacker
 
