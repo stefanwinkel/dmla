@@ -7,10 +7,9 @@ This exploit is from  https://github.com/gebl/dirtycow-docker-vdso.git'}
 This exploit is similar that dirtycow-docker-vdso_1 with exception no seperate user is created 
 
 To execute:
+``	vagrant up
 ``
-	vagrant up
-	
-	vagrant putty
+``	vagrant putty
 ``
 
 Once inside the VM run to launch the Docker Container:
