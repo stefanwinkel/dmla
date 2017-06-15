@@ -1,6 +1,6 @@
 --- 
 - 
-  box: puppetlabs/ubuntu-16.04-64-nocm
+  box: puppetlabs/ubuntu-14.04-64-nocm
   cpu: 2
   ip: "10.2.2.150"
   name: dmla-v1
